@@ -17,7 +17,7 @@ To hot-deploy on jetty use:
 Visit the links:
 
 * http://localhost:8080/
-* http://localhost:8080/rest
+* http://localhost:8080/spring-data-rest/rest/
 
 Inject some datas:
 
@@ -25,24 +25,24 @@ Inject some datas:
 
 Some REST request:
 
-    curl -v -X POST -H 'Content-Type: application/json' -d '{"name":"John Doe"}' http://localhost:8080/accounts/rest/people 
-    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "name":"Agilegeeks" }' http://localhost:8080/accounts/rest/people/1
-    curl -v -X DELETE -H 'Content-Type: application/json' http://localhost:8080/accounts/rest/people/1
+    curl -v -X POST -H 'Content-Type: application/json' -d '{"name":"John Doe"}' http://localhost:8080/spring-data-rest/rest/people 
+    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "name":"Agilegeeks" }' http://localhost:8080/spring-data-rest/rest/people/1
+    curl -v -X DELETE -H 'Content-Type: application/json' http://localhost:8080/spring-data-rest/rest/people/1
 
-    curl -v -X POST -H 'Content-Type: application/json' -d '{ "type":"fb" }' http://localhost:8080/accounts/rest/profile
-    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "type":"fb", "url":"http://google.com" }' http://localhost:8080/accounts/rest/profile/1
-    curl -v -X DELETE -H 'Content-Type: application/json' http://localhost:8080/accounts/rest/profiles/1
+    curl -v -X POST -H 'Content-Type: application/json' -d '{ "type":"fb" }' http://localhost:8080/spring-data-rest/rest/profile
+    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "type":"fb", "url":"http://google.com" }' http://localhost:8080/spring-data-rest/rest/profile/1
+    curl -v -X DELETE -H 'Content-Type: application/json' http://localhost:8080/spring-data-rest/rest/profiles/1
 
-    curl -v -X POST -H 'Content-Type: application/json' -d '{ "city":"paris" }' http://localhost:8080/accounts/rest/address
-    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "lines":[ "line1", "line2" ] }' http://localhost:8080/accounts/rest/address/1
-    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "postalCode":"75012" }' http://localhost:8080/accounts/rest/address/1
+    curl -v -X POST -H 'Content-Type: application/json' -d '{ "city":"paris" }' http://localhost:8080/spring-data-rest/rest/address
+    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "lines":[ "line1", "line2" ] }' http://localhost:8080/spring-data-rest/rest/address/1
+    curl -v -X PUT -H 'Content-Type: application/json' -d '{ "postalCode":"75012" }' http://localhost:8080/spring-data-rest/rest/address/1
 
-    curl -v -X POST -H 'Content-Type: application/json' -d '{"name":"John Doe", "addresses":[ { "id":1 } ] }' http://localhost:8080/accounts/rest/people
+    curl -v -X POST -H 'Content-Type: application/json' -d '{"name":"John Doe", "addresses":[ { "id":1 } ] }' http://localhost:8080/spring-data-rest/rest/people
 
-    curl -v http://localhost:8080/accounts/rest/people?limit=5
-    curl -v http://localhost:8080/accounts/rest/people?page=2&limit=5
+    curl -v http://localhost:8080/spring-data-rest/rest/people?limit=5
+    curl -v http://localhost:8080/spring-data-rest/rest/people?page=2&limit=5
  
-    curl -v http://localhost:8080/accounts/rest/people/search/nameContaining?name=am
+    curl -v http://localhost:8080/spring-data-rest/rest/people/search/nameContaining?name=am
 
 
 References
