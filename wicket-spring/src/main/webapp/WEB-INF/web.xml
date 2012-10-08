@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+                             http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+   <display-name>Wicket + Spring Web Application</display-name>
+ 
+   <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring.xml</param-value>
+   </context-param>
+   
+   <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+   
+   <listener>
+      <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+   </listener>
+   
+   <filter>
+      <filter-name>wicket.wicketfilter</filter-name>
+      <filter-class>net.agilegeeks.wicketspring.config.MyWicketFilter</filter-class>
+      <init-param>
+         <param-name>applicationFactoryClassName</param-name>
+         <param-value>org.apache.wicket.spring.SpringWebApplicationFactory</param-value>
+      </init-param>
+      <init-param>
+         <param-name>applicationBean</param-name>
+         <param-value>MyWicketApplication</param-value>
+      </init-param>
+   </filter>
+ 
+   <filter-mapping>
+      <filter-name>wicket.wicketfilter</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+</web-app>

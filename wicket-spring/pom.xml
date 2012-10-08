@@ -1,0 +1,331 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	                         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+
+   <!-- Maven Metadatas -->
+   <groupId>net.agilegeeks</groupId>
+   <artifactId>wicketspring</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>war</packaging>
+
+   <!-- Project Metadatas -->
+   <name>WicketSpring</name>
+   <description>
+      This is a Wicket + Spring project demo.
+   </description>
+   <url>http://github.com/agilegeeks/wicketspring</url>
+
+   <inceptionYear>2012</inceptionYear>
+
+   <organization>
+      <name>AgileGeeks</name>
+      <url>http://www.agilegeeks.net</url>
+   </organization>
+
+   <!-- Project Properties -->
+   <properties>
+
+      <!-- UTF-8 Encoding for all -->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+      <!-- Dependencies versions -->
+      <maven.versions>[3.0.0,)</maven.versions>
+      <java.version>1.6</java.version>
+      
+      <wicket.version>6.0.0</wicket.version>
+      <spring.version>3.1.2.RELEASE</spring.version>
+      <cglib.version>2.2.2</cglib.version>
+      <javax.servlet.version>2.5</javax.servlet.version>
+      <junit.version>4.10</junit.version>
+      
+      <slf4j.version>1.6.4</slf4j.version>
+      <log4j.version>1.2.17</log4j.version>
+      <logback.version>1.0.6</logback.version>
+      
+      <!-- Jetty configuration -->
+      <jetty.version>6.1.26</jetty.version>
+      <jetty.port>8080</jetty.port>
+      <jetty.stopPort>8005</jetty.stopPort>
+      <jetty.scanInterval>0</jetty.scanInterval>
+      
+   </properties>
+
+   <!-- Team Metadatas -->
+   <developers>
+
+      <!-- A Developer - You can skip some fields... -->
+      <developer>
+         <id>agilegeeks</id>
+         <name>AgileGeeks</name>
+         <email>contact@agilegeeks.net</email>
+         <roles>
+            <role>Admin</role>
+            <role>Developer</role>
+         </roles>
+         <organization>http://agilegeeks.net</organization>
+      </developer>
+
+   </developers>
+
+   <dependencies>
+   
+      <!-- Wicket -->
+      <dependency>
+         <groupId>org.apache.wicket</groupId>
+         <artifactId>wicket-core</artifactId>
+         <version>${wicket.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.wicket</groupId>
+         <artifactId>wicket-spring</artifactId>
+         <version>${wicket.version}</version>
+      </dependency>
+
+      <!-- Spring Framework -->
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-web</artifactId>
+         <version>${spring.version}</version>
+         <exclusions>
+            <exclusion>
+               <groupId>commons-logging</groupId>
+               <artifactId>commons-logging</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+         <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>cglib</groupId>
+         <artifactId>cglib</artifactId>
+         <version>${cglib.version}</version>
+      </dependency>
+
+      <!-- JEE Servlet -->
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <version>${javax.servlet.version}</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- SLF4J Logging -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>${slf4j.version}</version>
+      </dependency>
+      <!-- SLF4J Bridge to JCL -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>jcl-over-slf4j</artifactId>
+         <version>${slf4j.version}</version>
+      </dependency>
+      <!-- SLF4J Bridge to JUL -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>jul-to-slf4j</artifactId>
+         <version>${slf4j.version}</version>
+      </dependency>
+      <!-- Logback Logging -->
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>${logback.version}</version>
+         <exclusions>
+            <exclusion>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+            
+      <!-- Junit -->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>${junit.version}</version>
+         <scope>test</scope>
+      </dependency>
+
+   </dependencies>
+
+
+   <build>
+   
+      <!-- Wicket need HTML files in the WAR -->
+      <resources>
+         <resource>
+            <filtering>true</filtering>
+            <directory>src/main/resources</directory>
+         </resource>
+         <resource>
+            <filtering>true</filtering>
+            <directory>src/main/java</directory>
+            <includes>
+               <include>**</include>
+            </includes>
+            <excludes>
+               <exclude>**/*.java</exclude>
+            </excludes>
+         </resource>
+      </resources>
+      
+      <!-- Build plugins -->
+      <plugins>
+
+         <!-- Maven Compiler -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+
+               <!-- Ensures we are compiling at java.version level -->
+               <source>${java.version}</source>
+               <target>${java.version}</target>
+
+               <!-- Show Warnings & Deprecations -->
+               <showWarnings>true</showWarnings>
+               <showDeprecation>true</showDeprecation>
+
+            </configuration>
+         </plugin>
+
+         <!-- Maven WAR plugin -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+               <warName>${project.artifactId}</warName>
+               <webResources>
+                  <resource>
+                     <directory>src/main/webapp/WEB-INF</directory>
+                     <targetPath>WEB-INF</targetPath>
+                     <filtering>true</filtering>
+                  </resource>
+               </webResources>
+            </configuration>
+         </plugin>
+         
+         <!-- Jetty hot deploy / integration tests -->
+         <plugin>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>maven-jetty-plugin</artifactId>
+            <version>${jetty.version}</version>
+            <configuration>
+               <scanIntervalSeconds>${jetty.scanInterval}</scanIntervalSeconds>
+               <stopKey>STOP</stopKey>
+               <stopPort>${jetty.stopPort}</stopPort>
+               <connectors>
+                  <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                     <port>${jetty.port}</port>
+                     <maxIdleTime>60000</maxIdleTime>
+                  </connector>
+               </connectors>
+            </configuration>
+         </plugin>
+
+         <!-- Maven Enforcer -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+               <execution>
+                  <id>enforce</id>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+
+                     <!-- Fail the build if a check fail -->
+                     <fail>true</fail>
+
+                     <!-- Stop on the first check fail -->
+                     <failFast>true</failFast>
+
+                     <!-- Rules: -->
+                     <rules>
+
+                        <!-- Check Maven version -->
+                        <requireMavenVersion>
+                           <version>${maven.versions}</version>
+                        </requireMavenVersion>
+
+                        <!-- Check Java version -->
+                        <requireJavaVersion>
+                           <version>${java.version}</version>
+                        </requireJavaVersion>
+
+                        <!-- No snapshots Dependencies -->
+                        <requireReleaseDeps>
+                           <message>snapshots dependency found</message>
+                        </requireReleaseDeps>
+
+                        <!-- Only one version per dependency -->
+                        <dependencyConvergence />
+
+                        <!-- Check banned dependencies -->
+                        <bannedDependencies>
+                           <excludes>
+                              <!-- only slf4j + logback logs -->
+                              <exclude>commons-logging:commons-logging</exclude>
+                              <exclude>log4j:log4j</exclude>
+                           </excludes>
+                        </bannedDependencies>
+
+                        <!-- No Repositories in pom.xml -->
+                        <requireNoRepositories>
+                           <message><![CDATA[<repositories>...</repositories> defined in pom.xml]]></message>
+                        </requireNoRepositories>
+
+                     </rules>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      
+      </plugins>
+      
+      <!-- Use this to fix m2e goal "enforce" warning -->
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>org.eclipse.m2e</groupId>
+               <artifactId>lifecycle-mapping</artifactId>
+               <version>1.0.0</version>
+               <configuration>
+                  <lifecycleMappingMetadata>
+                     <pluginExecutions>
+                        <pluginExecution>
+                           <pluginExecutionFilter>
+                              <groupId>org.apache.maven.plugins</groupId>
+                              <artifactId>maven-enforcer-plugin</artifactId>
+                              <versionRange>[1.0.0,)</versionRange>
+                              <goals>
+                                 <goal>enforce</goal>
+                              </goals>
+                           </pluginExecutionFilter>
+                           <action>
+                              <ignore />
+                           </action>
+                        </pluginExecution>
+                     </pluginExecutions>
+                  </lifecycleMappingMetadata>
+               </configuration>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+      
+   </build>
+
+</project>

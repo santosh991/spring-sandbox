@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>Form Page</h1>
+ 
+    <div wicket:id="feedback"></div>
+    
+	<form wicket:id="inputForm" class="inputForm">     	
+        	
+        	<label for="username">Username</label>
+            <input wicket:id="username" type="text" size="40"/>
+            <br />
+            
+            <label for="age">Age</label>
+			<input wicket:id="age" type="text" size="40"/>
+			<br />
+			
+			<label for="gender">Gender</label>
+			<span valign="top" wicket:id="gender">
+                <input type="radio">foo</input>
+                <input type="radio">bar</input>
+            </span>
+            <br />
+            
+            <label for="newsletter">Receive Newsletter </label>
+            <input wicket:id="newsletter" type="checkbox"/>
+            <br />
+              
+			<input wicket:id="reset" type="submit" value="Reset" />
+			<input wicket:id="submit" type="submit" value="Submit" />
+			
+	</form>
+ 
+</body>
+</html>
